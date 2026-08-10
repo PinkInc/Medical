@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | X Medical</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">X</span>
+      <span class="logo-text">
+        <span class="logo-name">X Medical</span>
+        <span class="logo-tagline">Dermatology &amp; Skin Care Clinic</span>
+      </span>
+    </a>
+    <div class="header-center"><a href="appointment.html" class="btn-book">Book Appointment</a></div>
+    <nav class="main-nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="">Home</a></li>
+        <li><a href="about.html" class="">About</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle" aria-expanded="false">Services <span class="caret">&#9662;</span></button>
+          <ul class="dropdown-menu">
+            <li><a href="services.html#acne">Acne &amp; Scar Treatment</a></li>
+            <li><a href="services.html#skin">Skin Rejuvenation</a></li>
+            <li><a href="services.html#hair">Hair &amp; Scalp Care</a></li>
+            <li><a href="services.html#laser">Laser Treatments</a></li>
+            <li><a href="services.html#bridal">Bridal Skin Prep</a></li>
+          </ul>
+        </li>
+        <li><a href="appointment.html" class="">Book Appointment</a></li>
+        <li><a href="contact.html" class="active">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container section-head">
+    <span class="eyebrow">Contact Us</span>
+    <h1 style="font-size:34px; margin-top:10px;">Get in touch</h1>
+    <p>Questions about a treatment or your appointment? Reach out below.</p>
+  </div>
+  <div class="container contact-grid">
+    <div>
+      <div class="contact-info-card">
+        <div class="contact-row"><div class="icon">&#128222;</div><div><h4>Phone</h4><p>+91 98765 43210 (sample number)</p></div></div>
+        <div class="contact-row"><div class="icon">&#9993;&#65039;</div><div><h4>Email</h4><p>care@xmedical.com (sample email)</p></div></div>
+        <div class="contact-row"><div class="icon">&#128205;</div><div><h4>Clinic Address</h4><p>12, Skin Care Complex, Connaught Place, New Delhi, Delhi 110001 (sample address)</p></div></div>
+        <div class="contact-row"><div class="icon">&#128337;</div><div><h4>Hours</h4><p>Mon &ndash; Sat: 10:00 AM &ndash; 7:00 PM</p></div></div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps?q=Connaught+Place,+New+Delhi&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Clinic Location"></iframe>
+      </div>
+      <p style="font-size:12.5px; color:var(--ink-soft); margin-top:8px;">Sample location shown — swap in your real clinic's Google Maps embed link when you deploy.</p>
+    </div>
+    <div>
+      <div class="form-note">This is a static preview, so the live "Contact the Doctor" Google Form can't submit here. Below is a working preview of the form fields — connect your real Google Form link when you deploy the PHP version.</div>
+      <form class="booking-form" onsubmit="event.preventDefault(); document.getElementById('contactSent').style.display='block'; this.reset();">
+        <div class="field-row"><label>Your Name</label><input type="text" placeholder="e.g. Sunita Kapoor" required></div>
+        <div class="field-row"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+        <div class="field-row"><label>Message</label><textarea rows="4" placeholder="How can we help?" required></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Send Message</button>
+        <div id="contactSent" class="booking-alert booking-alert-success" style="display:none; margin-top:16px;">Preview only — this message wasn't actually sent. It will be once your Google Form is connected.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <span class="logo-mark small">X</span>
+      <h3>X Medical</h3>
+      <p>Dermatology &amp; Skin Care Clinic</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="appointment.html">Book Appointment</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul class="footer-contact">
+        <li>&#128222; +91 98765 43210</li>
+        <li>&#9993;&#65039; care@xmedical.com</li>
+        <li>&#128205; 12, Skin Care Complex, Connaught Place, New Delhi, Delhi 110001</li>
+        <li>&#128337; Mon &ndash; Sat: 10:00 AM &ndash; 7:00 PM</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 X Medical. All rights reserved. &mdash; Sample contact details for demo purposes.</p>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+</body>
+</html>

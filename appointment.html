@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Appointment | X Medical</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">X</span>
+      <span class="logo-text">
+        <span class="logo-name">X Medical</span>
+        <span class="logo-tagline">Dermatology &amp; Skin Care Clinic</span>
+      </span>
+    </a>
+    <div class="header-center"><a href="appointment.html" class="btn-book">Book Appointment</a></div>
+    <nav class="main-nav">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle" aria-expanded="false">Services <span class="caret">&#9662;</span></button>
+          <ul class="dropdown-menu">
+            <li><a href="services.html#acne">Acne &amp; Scar Treatment</a></li>
+            <li><a href="services.html#skin">Skin Rejuvenation</a></li>
+            <li><a href="services.html#hair">Hair &amp; Scalp Care</a></li>
+            <li><a href="services.html#laser">Laser Treatments</a></li>
+            <li><a href="services.html#bridal">Bridal Skin Prep</a></li>
+          </ul>
+        </li>
+        <li><a href="appointment.html" class="active">Book Appointment</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="section" style="padding-bottom:10px;">
+  <div class="container section-head">
+    <span class="eyebrow">Book Appointment</span>
+    <h1 style="font-size:34px; margin-top:10px;">Pick a slot and lock it in</h1>
+    <p>One slot can only be booked by one patient, and each patient can hold only one active appointment at a time.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="container" style="max-width:640px;">
+
+    <div class="form-note">This static preview simulates the booking rules in your browser only (nothing is saved permanently). The real PHP version writes every booking to <code>data/appointments.csv</code> — your live appointments data sheet.</div>
+
+    <div id="alertBox"></div>
+
+    <form class="booking-form" id="demoBookingForm">
+      <div class="field-row">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" placeholder="e.g. Rohit Sharma" required>
+      </div>
+      <div class="field-row two-col">
+        <div><label for="phone">Phone Number *</label><input type="tel" id="phone" placeholder="+91 98765 43210" required></div>
+        <div><label for="email">Email *</label><input type="email" id="email" placeholder="you@example.com" required></div>
+      </div>
+      <div class="field-row two-col">
+        <div><label for="date">Preferred Date *</label><input type="date" id="date" required></div>
+        <div>
+          <label for="time">Time Slot *</label>
+          <select id="time" required><option value="" disabled selected>Choose a date first</option></select>
+          <p class="field-hint" id="slotHint">Slots already taken on your chosen date will be greyed out.</p>
+        </div>
+      </div>
+      <div class="field-row"><label for="reason">Reason for Visit</label><textarea id="reason" rows="3" placeholder="e.g. Acne consultation, hair fall, follow-up..."></textarea></div>
+      <button type="submit" class="btn-primary" style="width:100%; justify-content:center;">Confirm Appointment</button>
+    </form>
+
+    <p style="text-align:center; margin-top:22px; color:var(--ink-soft); font-size:14px;">
+      Prefer to talk instead? Call us at <strong style="color:var(--teal-deep);">+91 98765 43210</strong>
+      or see our <a href="contact.html" style="color:var(--teal); font-weight:600;">Contact page</a>.
+    </p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col footer-brand"><span class="logo-mark small">X</span><h3>X Medical</h3><p>Dermatology &amp; Skin Care Clinic</p></div>
+    <div class="footer-col"><h4>Quick Links</h4><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="appointment.html">Book Appointment</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+    <div class="footer-col"><h4>Contact</h4><ul class="footer-contact"><li>&#128222; +91 98765 43210</li><li>&#9993;&#65039; care@xmedical.com</li><li>&#128205; Connaught Place, New Delhi</li><li>&#128337; Mon&ndash;Sat: 10AM&ndash;7PM</li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>&copy; 2026 X Medical. All rights reserved. &mdash; Sample contact details for demo purposes.</p></div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  // ---- Demo data (in-memory only, mirrors the real CSV seed rows) ----
+  let bookedAppointments = [
+    { date: '2026-08-14', time: '11:00 AM', phone: '+919123456789', email: 'rohit.sharma@example.com' },
+    { date: '2026-08-15', time: '4:00 PM',  phone: '+919987654321', email: 'priya.nair@example.com' }
+  ];
+
+  function generateSlots() {
+    const slots = [];
+    let t = new Date('1970-01-01T10:00:00');
+    const end = new Date('1970-01-01T19:00:00');
+    const lunchStart = new Date('1970-01-01T13:00:00');
+    const lunchEnd = new Date('1970-01-01T14:00:00');
+    while (t < end) {
+      if (!(t >= lunchStart && t < lunchEnd)) {
+        slots.push(t.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }));
+      }
+      t = new Date(t.getTime() + 30 * 60000);
+    }
+    return slots;
+  }
+  const allSlots = generateSlots();
+
+  const dateInput = document.getElementById('date');
+  const timeSelect = document.getElementById('time');
+  const slotHint = document.getElementById('slotHint');
+  const alertBox = document.getElementById('alertBox');
+
+  dateInput.min = new Date().toISOString().split('T')[0];
+
+  function normalizePhone(p) { return p.replace(/\\s+/g, ''); }
+
+  function renderSlots() {
+    const chosenDate = dateInput.value;
+    timeSelect.innerHTML = '<option value="" disabled selected>Choose a time slot</option>';
+    let anyTaken = false;
+    allSlots.forEach(function (slot) {
+      const taken = bookedAppointments.some(function (b) { return b.date === chosenDate && b.time === slot; });
+      if (taken) anyTaken = true;
+      const opt = document.createElement('option');
+      opt.value = slot;
+      opt.textContent = taken ? slot + ' — Booked' : slot;
+      opt.disabled = taken;
+      timeSelect.appendChild(opt);
+    });
+    slotHint.textContent = anyTaken ? 'Greyed-out slots are already booked for this date.' : 'All slots are open on this date.';
+  }
+  dateInput.addEventListener('change', renderSlots);
+
+  document.getElementById('demoBookingForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const phone = normalizePhone(document.getElementById('phone').value.trim());
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const date = dateInput.value;
+    const time = timeSelect.value;
+
+    const existing = bookedAppointments.find(function (b) {
+      return normalizePhone(b.phone) === phone || b.email === email;
+    });
+
+    if (existing) {
+      showAlert('error', 'You already have an appointment booked (' + existing.date + ' at ' + existing.time + '). Contact the clinic to reschedule before booking another.');
+      return;
+    }
+    if (!date || !time) {
+      showAlert('error', 'Please choose a date and an available time slot.');
+      return;
+    }
+    const slotTaken = bookedAppointments.some(function (b) { return b.date === date && b.time === time; });
+    if (slotTaken) {
+      showAlert('error', 'That slot was just taken. Please pick another.');
+      renderSlots();
+      return;
+    }
+
+    bookedAppointments.push({ date: date, time: time, phone: phone, email: email });
+    showAlert('success', 'Appointment confirmed for ' + name + ' on ' + date + ' at ' + time + '. (Demo only — not permanently saved.)');
+    this.reset();
+    renderSlots();
+  });
+
+  function showAlert(type, msg) {
+    alertBox.innerHTML = '<div class="booking-alert booking-alert-' + type + '">' + msg + '</div>';
+    alertBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+</script>
+</body>
+</html>
